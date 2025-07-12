@@ -1,0 +1,85 @@
+#include <iostream>
+using namespace std;
+
+class node{
+  public:
+  int data;
+  node* next;
+  node(int x) {
+      data=x;
+      next=NULL;
+  }
+};
+class list{
+    private:
+    node* head;
+    node* tail;
+    public:
+    list(){
+        head=NULL;
+        tail=NULL;
+    }
+    void push(int x) {
+        if (head==NULL) {
+            node* temp = new node(x);
+            head=temp;
+            tail=head;
+        } else {
+            node* temp = new node(x);
+            temp->next = head; // tempnext is pointing to head
+            head = temp; //temp becomes head
+        }
+    }
+    
+    void pop() {
+        if (head==NULL) {
+            cout<<"list is empty"<<endl;
+        } else {
+            node* temp=head;
+          temp=head->next;
+          delete head;
+          head = temp;
+          
+        /* node* temp = head;
+         temp=head->next;
+         delete head;
+         head = temp; */
+            
+        }
+    }
+    
+    void dequeue() {
+        if (head==NULL) {
+            cout<<"nothing to delete here"<<endl;
+        } else {
+            node* temp3;
+            temp3=head->next;
+            delete head;
+            head = temp3;
+        } }
+    
+     void display() {
+        if (head==NULL) {
+            cout<<"nothing to display"<<endl;
+        } else {
+            node* temp2 = head;
+            while(temp2!=NULL){
+                cout<<temp2->data<<" -> ";
+                temp2=temp2->next;
+            }
+            cout<<"NULL";
+        }
+    }
+};
+
+int main() {
+    cout<<"STACK IMPLEMENTATION"<<endl;
+    list l;
+    l.push(1);
+    l.push(12);
+    l.push(123);
+    l.push(1234);
+    l.pop();
+    l.display();
+    return 0;
+}
